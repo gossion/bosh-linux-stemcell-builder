@@ -11,7 +11,7 @@ mkdir -p $chroot/tmp
 
 
 if [[ "${DISTRIB_CODENAME}" == "xenial" ]]; then
-  pkg_mgr install linux-headers-4.10.0-38-generic linux-image-4.10.0-38-generic
+  pkg_mgr install linux-headers-4.13.0-1005-azure linux-image-4.13.0-1005-azure
 else
   pkg_mgr install wireless-crda linux-generic-lts-xenial
 fi
