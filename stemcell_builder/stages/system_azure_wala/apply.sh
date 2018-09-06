@@ -55,3 +55,33 @@ cat > $chroot/etc/logrotate.d/waagent <<EOS
     missingok
 }
 EOS
+
+# cloud-init
+if [ "${os_type}" == "ubuntu" ]
+then
+  run_in_chroot $chroot "
+    apt-get update # check update?
+    apt-get install -y cloud-init
+  "
+elif [ "${os_type}" == "rhel" -o "${os_type}" == "centos" ]
+then
+  run_in_chroot $chroot "
+    sudo yum install -y cloud-init
+    sudo yum check-update cloud-init -y
+    sudo yum install cloud-init -y
+  "
+else
+  echo "Unknown OS '${os_type}', exiting"
+  exit 2
+fi
+
+run_in_chroot $chroot "
+  sed -i 's/Provisioning.Enabled=y/Provisioning.Enabled=n/g' /etc/waagent.conf
+  sed -i 's/Provisioning.UseCloudInit=n/Provisioning.UseCloudInit=y/g' /etc/waagent.conf
+  sed -i 's/ResourceDisk.Format=y/ResourceDisk.Format=n/g' /etc/waagent.conf
+  sed -i 's/ResourceDisk.EnableSwap=y/ResourceDisk.EnableSwap=n/g' /etc/waagent.conf
+"
+
+cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
+cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
+cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg
