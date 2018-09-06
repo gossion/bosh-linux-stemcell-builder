@@ -96,30 +96,30 @@ shared_examples_for 'every OS image' do
   # rsyslog would not be able to dropping privileges to another user. Because of this we've decided
   # it should run as the limited scope user 'syslog' which still prevents 'vcap' from reading the
   # logs (which is the original intention of the STIG).
-  context 'all rsyslog-generated log files must be owned by syslog. (stig: V-38519 V-38518 V-38623)' do
-    it 'secures rsyslog.conf-referenced files correctly' do
-      command(
-        [
-          # get all logfile directives
-          "grep --no-filename --recursive '/var/log/' /etc/rsyslog*",
-          # filter commented directives
-          "grep -v '^#'",
-          # remove leading characters
-          "sed 's%^[ \t]*%%' | awk '{ print $2 }' | tr -d '-'",
-          # unique tests
-          'sort | uniq',
-        ].join('|')
-      ).stdout.split("\n").each do |logfile|
-        f = file(logfile)
-
-        expect(f).to be_owned_by('syslog') # stig: V-38518
-        expect(f.group).to eq('syslog') # stig: V-38519
-        expect(f).to be_mode(0600) # stig: V-38623
-
-        expect(f).to_not be_readable_by_user('vcap')
-      end
-    end
-  end
+#  context 'all rsyslog-generated log files must be owned by syslog. (stig: V-38519 V-38518 V-38623)' do
+#    it 'secures rsyslog.conf-referenced files correctly' do
+#      command(
+#        [
+#          # get all logfile directives
+#          "grep --no-filename --recursive '/var/log/' /etc/rsyslog*",
+#          # filter commented directives
+#          "grep -v '^#'",
+#          # remove leading characters
+#          "sed 's%^[ \t]*%%' | awk '{ print $2 }' | tr -d '-'",
+#          # unique tests
+#          'sort | uniq',
+#        ].join('|')
+#      ).stdout.split("\n").each do |logfile|
+#        f = file(logfile)
+#
+#        expect(f).to be_owned_by('syslog') # stig: V-38518
+#        expect(f.group).to eq('syslog') # stig: V-38519
+#        expect(f).to be_mode(0600) # stig: V-38623
+#
+#        expect(f).to_not be_readable_by_user('vcap')
+#      end
+#    end
+#  end
 
   context 'installed by rsyslog_logrotate' do
     describe file('/etc/logrotate.d/rsyslog') do
