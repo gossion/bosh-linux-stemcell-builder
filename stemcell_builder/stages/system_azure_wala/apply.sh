@@ -85,3 +85,4 @@ run_in_chroot $chroot "
 cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
 cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
 cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg
+cp -f $dir/assets/var/lib/cloud/scripts/per-once/firstboot.sh $chroot/var/lib/cloud/scripts/per-once/firstboot.sh
