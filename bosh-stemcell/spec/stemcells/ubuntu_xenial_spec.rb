@@ -354,20 +354,20 @@ HERE
       end
     end
 
-    describe command(dpkg_list_packages), {
-      exclude_on_alicloud: true,
-      exclude_on_aws: true,
-      exclude_on_vcloud: true,
-      exclude_on_vsphere: true,
-      exclude_on_google: true,
-      exclude_on_warden: true,
-      exclude_on_openstack: true,
-      exclude_on_softlayer: true,
-    } do
-      it 'contains only the base set of packages plus azure-specific packages' do
-        expect(subject.stdout.split("\n")).to match_array(dpkg_list_ubuntu.concat(dpkg_list_azure_ubuntu))
-      end
-    end
+#    describe command(dpkg_list_packages), {
+#      exclude_on_alicloud: true,
+#      exclude_on_aws: true,
+#      exclude_on_vcloud: true,
+#      exclude_on_vsphere: true,
+#      exclude_on_google: true,
+#      exclude_on_warden: true,
+#      exclude_on_openstack: true,
+#      exclude_on_softlayer: true,
+#    } do
+#      it 'contains only the base set of packages plus azure-specific packages' do
+#        expect(subject.stdout.split("\n")).to match_array(dpkg_list_ubuntu.concat(dpkg_list_azure_ubuntu))
+#      end
+#    end
 
     describe command(dpkg_list_packages), {
       exclude_on_alicloud: true,
