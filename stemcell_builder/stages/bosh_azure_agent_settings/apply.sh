@@ -19,8 +19,8 @@ cat > $chroot/var/vcap/bosh/agent.json <<JSON
         {
           "Type": "File",
           "MetaDataPath": "",
-          "UserDataPath": "/var/lib/waagent/CustomData",
-          "SettingsPath": "/var/lib/waagent/CustomData"
+          "UserDataPath": "/var/lib/cloudinit/CustomData",
+          "SettingsPath": "/var/lib/cloudinit/CustomData"
         }
       ],
       "UseServerName": true,
