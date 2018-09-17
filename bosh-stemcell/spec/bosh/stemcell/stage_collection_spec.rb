@@ -446,6 +446,7 @@ module Bosh::Stemcell
 
         let(:azure_build_stemcell_image_stages) {
           [
+            :system_azure_cloud_init,
             :system_azure_network,
             :system_azure_wala,
             :system_parameters,

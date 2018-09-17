@@ -198,6 +198,7 @@ module Bosh::Stemcell
 
     def azure_stages
       [
+        :system_azure_cloud_init,
         :system_azure_network,
         :system_azure_wala,
         :system_parameters,
