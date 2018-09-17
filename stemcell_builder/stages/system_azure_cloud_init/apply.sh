@@ -32,6 +32,8 @@ cp -f $dir/assets/etc/rsyslog.d/21-cloudinit.conf $chroot/etc/rsyslog.d/21-cloud
 run_in_chroot $chroot "
   cloud-init init --local
   rm -rf /var/lib/cloud/instances/* 
+  chown syslog:syslog /var/log/cloudinit.log
+  chmod 600 /var/log/cloudinit.log
 "
 cp -f $dir/assets/var/lib/cloud/scripts/per-once/firstboot.sh $chroot/var/lib/cloud/scripts/per-once/firstboot.sh #Not need to run everytime
 
