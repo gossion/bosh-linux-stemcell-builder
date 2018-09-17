@@ -42,4 +42,14 @@ describe 'Azure Stemcell', stemcell_image: true do
       its(:content) { should include('"PartitionerType": "parted"') }
     end
   end
+
+  context 'rsyslog conf directory only contains files installed by rsyslog_config stage and cloud-init package' do
+    describe command('ls -A /etc/rsyslog.d') do
+      its (:stdout) { should eq(%q(21-cloudinit.conf
+50-default.conf
+avoid-startup-deadlock.conf
+enable-kernel-logging.conf
+))}
+    end
+  end
 end
