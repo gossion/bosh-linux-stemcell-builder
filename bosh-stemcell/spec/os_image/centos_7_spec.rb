@@ -410,7 +410,9 @@ HERE
       its(:content_as_lines) { should match_array(shadow_match_lines) }
     end
 
-    describe file('/etc/group') do
+    describe file('/etc/group'), {
+      exclude_on_azure: true
+    } do
 
       group_raw = <<HERE
 root:x:0:
@@ -468,7 +470,9 @@ HERE
 
     end
 
-    describe file('/etc/gshadow') do
+    describe file('/etc/gshadow'), {
+      exclude_on_azure: true
+    } do
 
       gshadow_raw = <<HERE
 root:*::
