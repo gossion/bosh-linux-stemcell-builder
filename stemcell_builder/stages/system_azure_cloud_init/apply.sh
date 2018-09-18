@@ -11,11 +11,11 @@ then
     apt-get update # check update?
     apt-get install -y cloud-init
   "
-  cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
-  cp -f $dir/assets/etc/cloud/cloud.cfg.d/05_logging.cfg $chroot/etc/cloud/cloud.cfg.d/05_logging.cfg
-  cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
-  cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg
-  cp -f $dir/assets/etc/rsyslog.d/21-cloudinit.conf $chroot/etc/rsyslog.d/21-cloudinit.conf
+  #cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
+  #cp -f $dir/assets/etc/cloud/cloud.cfg.d/05_logging.cfg $chroot/etc/cloud/cloud.cfg.d/05_logging.cfg
+  #cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
+  #cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg
+  #cp -f $dir/assets/etc/rsyslog.d/21-cloudinit.conf $chroot/etc/rsyslog.d/21-cloudinit.conf
 elif [ "${os_type}" == "rhel" -o "${os_type}" == "centos" ]
 then
   run_in_chroot $chroot "

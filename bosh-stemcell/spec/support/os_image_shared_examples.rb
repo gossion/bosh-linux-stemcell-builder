@@ -96,7 +96,9 @@ shared_examples_for 'every OS image' do
   # rsyslog would not be able to dropping privileges to another user. Because of this we've decided
   # it should run as the limited scope user 'syslog' which still prevents 'vcap' from reading the
   # logs (which is the original intention of the STIG).
-  context 'all rsyslog-generated log files must be owned by syslog. (stig: V-38519 V-38518 V-38623)' do
+  context 'all rsyslog-generated log files must be owned by syslog. (stig: V-38519 V-38518 V-38623)', {
+    exclude_on_azure: true
+  } do
     it 'secures rsyslog.conf-referenced files correctly' do
       command(
         [
