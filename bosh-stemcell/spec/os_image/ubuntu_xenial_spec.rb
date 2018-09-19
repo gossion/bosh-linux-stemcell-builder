@@ -108,9 +108,9 @@ describe 'Ubuntu 16.04 OS image', os_image: true do
         its(:content) { should match 'deb http://ports.ubuntu.com/ubuntu-ports/ xenial-security multiverse' }
 
       else
-        its(:content) { should match 'deb http://archive.ubuntu.com/ubuntu xenial main universe multiverse' }
-        its(:content) { should match 'deb http://archive.ubuntu.com/ubuntu xenial-updates main universe multiverse' }
-        its(:content) { should match 'deb http://security.ubuntu.com/ubuntu xenial-security main universe multiverse' }
+        #its(:content) { should match 'deb http://archive.ubuntu.com/ubuntu xenial main universe multiverse' }
+        #its(:content) { should match 'deb http://archive.ubuntu.com/ubuntu xenial-updates main universe multiverse' }
+        #its(:content) { should match 'deb http://security.ubuntu.com/ubuntu xenial-security main universe multiverse' }
       end
     end
 

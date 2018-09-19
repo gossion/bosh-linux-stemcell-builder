@@ -7,6 +7,9 @@ source $base_dir/lib/prelude_apply.bash
 
 if [ "${os_type}" == "ubuntu" ]
 then
+
+  cp -f $dir/assets/sources.list $chroot/etc/apt/sources.list
+
   run_in_chroot $chroot "
     apt-get update # check update?
     apt-get install -y cloud-init
