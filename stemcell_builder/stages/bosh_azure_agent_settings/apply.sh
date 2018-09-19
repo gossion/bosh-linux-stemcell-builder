@@ -4,9 +4,9 @@ base_dir=$(readlink -nf $(dirname $0)/../..)
 source $base_dir/lib/prelude_apply.bash
 
 if [ $DISTRIB_CODENAME == 'xenial' ]; then
-  user_data_path="/var/lib/waagent/CustomData"
-else
   user_data_path="/var/lib/cloud/instance/user-data.txt"
+else
+  user_data_path="/var/lib/waagent/CustomData"
 fi
 
 # Set SettingsPath but never use it because file_meta_service is avaliable only when the settings file exists.

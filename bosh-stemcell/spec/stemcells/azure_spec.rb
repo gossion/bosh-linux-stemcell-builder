@@ -33,8 +33,13 @@ describe 'Azure Stemcell', stemcell_image: true do
       it { should be_valid_json_file }
       its(:content) { should include('"Type": "File"') }
       its(:content) { should include('"MetaDataPath": ""') }
-      its(:content) { should include('"UserDataPath": "/var/lib/waagent/CustomData"') }
-      its(:content) { should include('"SettingsPath": "/var/lib/waagent/CustomData"') }
+      if ENV['OS_VERSION'] == "xenial"
+        its(:content) { should include('"UserDataPath": "/var/lib/cloud/instance/user-data.txt"') }
+        its(:content) { should include('"SettingsPath": "/var/lib/cloud/instance/user-data.txt"') }
+      else
+        its(:content) { should include('"UserDataPath": "/var/lib/waagent/CustomData"') }
+        its(:content) { should include('"SettingsPath": "/var/lib/waagent/CustomData"') }
+      end
       its(:content) { should include('"UseServerName": true') }
       its(:content) { should include('"UseRegistry": true') }
       its(:content) { should include('"DevicePathResolutionType": "scsi"') }
