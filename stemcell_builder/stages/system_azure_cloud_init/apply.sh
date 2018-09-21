@@ -17,6 +17,11 @@ if [ $DISTRIB_CODENAME == 'xenial' ]; then
 
     # TODO
     rm /etc/rsyslog.d/21-cloudinit.conf
+
+    # Test performance, TODO: rm
+    cloud-init init --local
+    rm -rf /var/lib/cloud/instances/* 
+    rm -rf /var/log/cloud-init*
   "
   cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
   #cp -f $dir/assets/etc/cloud/cloud.cfg.d/05_logging.cfg $chroot/etc/cloud/cloud.cfg.d/05_logging.cfg
