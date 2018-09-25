@@ -7,7 +7,7 @@
 [Unit]
 Description=Azure Linux Agent
 
-After=network-online.target
+After=network-online.target cloud-init.service
 Wants=network-online.target
 
 ConditionFileIsExecutable=/usr/sbin/waagent
@@ -15,7 +15,7 @@ ConditionPathExists=/etc/waagent.conf
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python -u /usr/sbin/waagent -daemon
+ExecStart=/usr/bin/python3 -u /usr/sbin/waagent -daemon
 Restart=always
 
 [Install]

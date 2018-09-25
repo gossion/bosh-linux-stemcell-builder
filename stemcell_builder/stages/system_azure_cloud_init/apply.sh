@@ -21,7 +21,7 @@ if [ $DISTRIB_CODENAME == 'xenial' ]; then
   cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
   #cp -f $dir/assets/etc/cloud/cloud.cfg.d/05_logging.cfg $chroot/etc/cloud/cloud.cfg.d/05_logging.cfg
   #cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
-  cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg
+  cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/90_dpkg.cfg
 
   # V TODO
   #cp -f $dir/assets/etc/rsyslog.d/21-cloudinit.conf $chroot/etc/rsyslog.d/21-cloudinit.conf
