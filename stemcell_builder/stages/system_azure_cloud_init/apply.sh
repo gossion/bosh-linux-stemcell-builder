@@ -9,7 +9,7 @@ if [ $DISTRIB_CODENAME == 'xenial' ]; then
   run_in_chroot $chroot "
     # install cloud-init
     apt-get update
-    apt-get install -y cloud-init
+    apt-get install -y cloud-init=18.3-9-g2e62cb8a-0ubuntu1~16.04.2
 
     # use cloud-init for provision instead of waagent
     sed -i 's/Provisioning.Enabled=y/Provisioning.Enabled=n/g' /etc/waagent.conf
@@ -17,11 +17,6 @@ if [ $DISTRIB_CODENAME == 'xenial' ]; then
 
     # TODO
     rm /etc/rsyslog.d/21-cloudinit.conf
-
-    # Test performance, TODO: rm
-    cloud-init init --local
-    rm -rf /var/lib/cloud/instances/* 
-    rm -rf /var/log/cloud-init*
   "
   cp -f $dir/assets/etc/cloud/cloud.cfg $chroot/etc/cloud/cloud.cfg
   #cp -f $dir/assets/etc/cloud/cloud.cfg.d/05_logging.cfg $chroot/etc/cloud/cloud.cfg.d/05_logging.cfg
