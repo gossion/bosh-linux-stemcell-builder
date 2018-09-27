@@ -23,6 +23,10 @@ if [ $DISTRIB_CODENAME == 'xenial' ]; then
   #cp -f $dir/assets/etc/cloud/cloud.cfg.d/90-azure.cfg $chroot/etc/cloud/cloud.cfg.d/90-azure.cfg
   cp -f $dir/assets/etc/cloud/cloud.cfg.d/91_walinuxagent.cfg $chroot/etc/cloud/cloud.cfg.d/90_dpkg.cfg
 
+  # boot it fast
+  cp -f $dir/assets/lib/systemd/system/cloud-init.service $chroot/lib/systemd/system/cloud-init.service
+  cp -f $dir/assets/lib/systemd/system/rc-local.service $chroot/lib/systemd/system/rc-local.service
+
   # V TODO
   #cp -f $dir/assets/etc/rsyslog.d/21-cloudinit.conf $chroot/etc/rsyslog.d/21-cloudinit.conf
   #run_in_chroot $chroot "
